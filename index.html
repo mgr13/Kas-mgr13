@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Kas Kelas Digital</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light d-flex justify-content-center align-items-center vh-100">
+<div class="card shadow p-4" style="width:350px">
+<h4 class="text-center">Kas Kelas Digital</h4>
+<input id="username" class="form-control mt-3" placeholder="Username">
+<input id="password" type="password" class="form-control mt-2" placeholder="Password">
+<button class="btn btn-primary w-100 mt-3" onclick="login()">Login</button>
+</div>
+<script>
+const API="ISI_URL_WEB_APP";
+function login(){
+fetch(`${API}?action=login&username=${username.value}&password=${password.value}`)
+.then(r=>r.json()).then(d=>{
+ if(d.success){
+  localStorage.setItem("user",JSON.stringify(d.data));
+  location.href="dashboard.html";
+ } else alert(d.message);
+});
+}
+</script>
+</body>
+</html>
